@@ -28,3 +28,8 @@ Estrutura de arquivos:
     - Alunos Reprovados     - Média das notas < 5 ou frequencia < 8;
 
 - Exibir dados do Aluno, cursos em que está matrículado, suas notas e frequencia.
+- Exibir alunos de algum período específico.
+- Exibir quantidade de matrículas de um curso.
+- Exibir quantidade de alunos em curso EAD.
+- Exibir quantidade de alunos em curso presencial.
+- Etc.
