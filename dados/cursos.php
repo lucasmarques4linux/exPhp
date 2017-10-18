@@ -102,13 +102,13 @@ function lista_cursos($num)
 		$curso = rand(500,502);
 	}
 	if ($num == 2) {
-		$curso = rand(600,602);
+		$curso = rand(605,607);
 	}
 	if ($num == 3) {
 		$curso = rand(4500,4502);
 	}
 	if ($num == 4) {
-		$curso = rand(4600,4602);
+		$curso = rand(4605,4607);
 	}
 	if ($num == 5) {
 		$curso = 4515;
