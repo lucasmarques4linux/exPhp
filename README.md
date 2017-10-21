@@ -9,6 +9,8 @@ Estrutura de arquivos:
     - dados/cursos.php;
     - dados/matriculas.php;
     - dados/dados.php;
+    - dadps/turmas.php;
+    - dados/periodos.php;
     
 
 ## Exercícios para praticar
