@@ -12,13 +12,35 @@ echo "<pre>";
 
 function buscaPorId($array,$id){
 
-	$find = array_filter($array, function($array_values) use ($id) {
+	$find = array_filter($array, function($array_values) use ($id){
 		return $array_values['id'] == $id;
 	});
 	return $find;
 }
 
 // print_r(buscaPorId($alunos, 40));
+
+
+function buscaAluno($key,$value){
+
+	global $alunos;
+
+	// $find = array_filter(
+	// 	$alunos, function ($aluno) use ($key,$value){
+	// 		return $aluno[$key] == $value;
+	// }
+	// );
+
+	foreach ($alunos as $aluno) {
+		if ($aluno[$key] === $value) {
+			return $aluno;
+		}
+	}
+
+	return 'Não encontrou';
+}
+
+print_r(buscaAluno('name', 'a'));
 
 /*
  *	Função que busca Matriculas por Id do Curso;
@@ -27,69 +49,69 @@ function buscaPorId($array,$id){
  *	$id, O Id do curso que estamos buscando
 **/
 
-function buscaMatriculasCurso($matriculas,$curso_id){
+// function buscaMatriculasCurso($matriculas,$curso_id){
 
-	$matriculas = array_filter($matriculas, function($array) use ($curso_id) {
-		return $array['curso_id'] == $curso_id;
-	});
-	return $matriculas;
-}
+// 	$matriculas = array_filter($matriculas, function($array) use ($curso_id) {
+// 		return $array['curso_id'] == $curso_id;
+// 	});
+// 	return $matriculas;
+// }
 
-$matriculas500 = buscaMatriculasCurso($matriculas,500);
+// $matriculas500 = buscaMatriculasCurso($matriculas,500);
 
 
-/*
- *	Foreach para pegarmos os alunos do curso 500
- *	Primeira Etapa -> Utilizamos a função buscaPorId para pegarmos os dados do aluno;
- *	é passado o array de alunos e o id do aluno através da matrícula
- *	Depois colocamos os dados do aluno e da matrícula dentro de um outro array
- *	$i é utilizado para iterarmos nosso array e assim não sobrescrevê-lo;
-**/
+// /*
+//  *	Foreach para pegarmos os alunos do curso 500
+//  *	Primeira Etapa -> Utilizamos a função buscaPorId para pegarmos os dados do aluno;
+//  *	é passado o array de alunos e o id do aluno através da matrícula
+//  *	Depois colocamos os dados do aluno e da matrícula dentro de um outro array
+//  *	$i é utilizado para iterarmos nosso array e assim não sobrescrevê-lo;
+// **/
 
-$i = 0;
-foreach ($matriculas500 as $matricula) {
-	$alunos500[$i]['aluno'] = buscaPorId($alunos,$matricula['aluno_id']);
-	$alunos500[$i]['matricula'] = $matricula;
+// $i = 0;
+// foreach ($matriculas500 as $matricula) {
+// 	$alunos500[$i]['aluno'] = buscaPorId($alunos,$matricula['aluno_id']);
+// 	$alunos500[$i]['matricula'] = $matricula;
 
-	$i++;
-}
+// 	$i++;
+// }
 
-// print_r($alunos500);
+// // print_r($alunos500);
 
-/*
- *	Função que busca Matriculas Aprovadas por Id do Curso;
- *	Paramêtros 
- *	$matriculas, array com todas as matrículas
- *	$id, O Id do curso que estamos buscando
-**/
 
-function buscaMatriculasAprovadasCurso($matriculas,$curso_id){
+//  *	Função que busca Matriculas Aprovadas por Id do Curso;
+//  *	Paramêtros 
+//  *	$matriculas, array com todas as matrículas
+//  *	$id, O Id do curso que estamos buscando
+// *
 
-	$matriculasCurso = buscaMatriculasCurso($matriculas,$curso_id);
+// function buscaMatriculasAprovadasCurso($matriculas,$curso_id){
 
-	$matriculasAprovadas = array_filter($matriculasCurso, function($array){
-		$mediaProvas = ($array['notas']['prova_1'] + $array['notas']['prova_2']) / 2;
-		if ($mediaProvas >= 7 && $array['frequencia'] >= 8) {
-		 	return $array;
-		 } 
-	});
+// 	$matriculasCurso = buscaMatriculasCurso($matriculas,$curso_id);
 
-	return $matriculasAprovadas;
-}
+// 	$matriculasAprovadas = array_filter($matriculasCurso, function($array){
+// 		$mediaProvas = ($array['notas']['prova_1'] + $array['notas']['prova_2']) / 2;
+// 		if ($mediaProvas >= 7 && $array['frequencia'] >= 8) {
+// 		 	return $array;
+// 		 } 
+// 	});
 
-$matriculasAprovados500 = buscaMatriculasAprovadasCurso($matriculas, 500);
+// 	return $matriculasAprovadas;
+// }
 
-$i = 0;
-foreach ($matriculasAprovados500 as $matricula) {
-	$alunosAprovados500[$i]['aluno'] = buscaPorId($alunos,$matricula['aluno_id']);
-	$alunosAprovados500[$i]['matricula'] = $matricula;
+// $matriculasAprovados500 = buscaMatriculasAprovadasCurso($matriculas, 500);
 
-	$i++;
-}
+// $i = 0;
+// foreach ($matriculasAprovados500 as $matricula) {
+// 	$alunosAprovados500[$i]['aluno'] = buscaPorId($alunos,$matricula['aluno_id']);
+// 	$alunosAprovados500[$i]['matricula'] = $matricula;
 
-if (isset($alunosAprovados500)) {
-	print_r($alunosAprovados500);	
-} else {
-	echo 'Todos Reprovados';
-}
+// 	$i++;
+// }
+
+// if (isset($alunosAprovados500)) {
+// 	print_r($alunosAprovados500);	
+// } else {
+// 	echo 'Todos Reprovados';
+// }
 
